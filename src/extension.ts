@@ -2701,6 +2701,11 @@ export default class PopShellExtension extends Extension {
 
         if (!indicator) {
             indicator = new PanelSettings.Indicator(ext);
+            
+            const shortPanelEnabled = Main.extensionManager.lookup('short-panel@yourdomain.com')?.state === 1;
+            if (shortPanelEnabled) {
+                panel.addToStatusArea('pop-shell', indicator.button, 0, 'left');
+            } else {
             panel.addToStatusArea('pop-shell', indicator.button);
         }
 
